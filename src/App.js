@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import logo from './logo.svg';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import muiTheme from './assets/styles/theme';
-import Title from './components/Title'
-import Lobby from './games/Lobby'
+import Loading from './components/Loading'
+import LoadErrorMessage from './components/LoadErrorMessage'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import muiTheme from './assets/styles/theme'
+import Navigation from './components/Navigation'
 
+import './App.css'
 
 class App extends Component {
-
   static childContextTypes = {
     muiTheme: PropTypes.object.isRequired,
   }
@@ -20,12 +20,10 @@ class App extends Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div className="App">
-          <div className="App-header">
+          <Loading />
+          <Navigation />
           { this.props.children }
-          </div>
-          <p className="App-intro">
-            To get started, edit <code>src/App.js</code> and save to reload.
-          </p>
+          <LoadErrorMessage />
         </div>
       </MuiThemeProvider>
     );
