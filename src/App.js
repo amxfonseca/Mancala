@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import logo from './logo.svg';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import muiTheme from './assets/styles/theme';
+import Title from './components/Title'
+import Lobby from './components/Lobby'
 
 
 class App extends Component {
@@ -19,8 +21,7 @@ class App extends Component {
       <MuiThemeProvider muiTheme={muiTheme}>
         <div className="App">
           <div className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h2>Welcome to React</h2>
+          { this.props.children }
           </div>
           <p className="App-intro">
             To get started, edit <code>src/App.js</code> and save to reload.
