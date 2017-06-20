@@ -1,5 +1,7 @@
 // src/actions/games/subscribe.js
 import API from '../../api'
+import { history } from '../../store'
+
 
 export const SUBSCRIBED_TO_GAMES_SERVICE = 'SUBSCRIBED_TO_GAMES_SERVICE'
 export const GAME_CREATED = 'GAME_CREATED'
