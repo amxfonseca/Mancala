@@ -4,7 +4,7 @@ import logo from './logo.svg';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import muiTheme from './assets/styles/theme';
 import Title from './components/Title'
-import Lobby from './components/Lobby'
+import Lobby from './games/Lobby'
 
 
 class App extends Component {
