@@ -10,25 +10,27 @@ class Game extends PureComponent {
     <div>
       <div className="board-wrapper">
       <div className="board">
-          <div className="hole">
-              <button className="hole-action onchange"> 4 </button>
-              <button className="hole-action onchange"> 4 </button>
-              <button className="hole-action onchange"> 4 </button>
-              <button className="hole-action onchange"> 4 </button>
-              <button className="hole-action onchange"> 4 </button>
-              <button className="hole-action onchange"> 4 </button>
+          <button className="pit-score"> 0 </button>
+          <div className="pit">
+              <button className="pit-action onchange"> 4 </button>
+              <button className="pit-action onchange"> 4 </button>
+              <button className="pit-action onchange"> 4 </button>
+              <button className="pit-action onchange"> 4 </button>
+              <button className="pit-action onchange"> 4 </button>
+              <button className="pit-action onchange"> 4 </button>
           </div>
       </div>
 
       <div className="board">
-          <div className="hole">
-              <button className="hole-action onchange"> 4 </button>
-              <button className="hole-action onchange"> 4 </button>
-              <button className="hole-action onchange"> 4 </button>
-              <button className="hole-action onchange"> 4 </button>
-              <button className="hole-action onchange"> 4 </button>
-              <button className="hole-action onchange"> 4 </button>
+          <div className="pit">
+              <button className="pit-action onchange"> 4 </button>
+              <button className="pit-action onchange"> 4 </button>
+              <button className="pit-action onchange"> 4 </button>
+              <button className="pit-action onchange"> 4 </button>
+              <button className="pit-action onchange"> 4 </button>
+              <button className="pit-action onchange"> 4 </button>
           </div>
+          <button className="pit-score"> 0 </button>
       </div>
     </div>
     </div>
