@@ -10,6 +10,7 @@ import App from './App'
 import SignUp from './users/SignUp'
 import SignIn from './users/SignIn'
 import Lobby from './games/Lobby'
+import Game from './games/Game'
 
 import './index.css'
 
@@ -25,6 +26,8 @@ ReactDOM.render(
         <IndexRoute component={Lobby} />
         <Route path="/sign-in" component={SignIn} />
         <Route path="/sign-up" component={SignUp} />
+        <Route path="/sign-up" component={SignUp} />
+        <Route path="/game" component={Game} />
       </Route>
     </Router>
   </Provider>,
