@@ -8,7 +8,7 @@ import client from './client'
 // import API from './api'
 // const api = new API()
 //
-// const recipes = api.service('games')
+// const games = api.service('games')
 // games.find()
 // games.create()
 //
