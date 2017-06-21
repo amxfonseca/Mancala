@@ -13,7 +13,7 @@ export class Game extends PureComponent {
     _id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     summary: PropTypes.string.isRequired,
-    author: PropTypes.shape({
+    owner: PropTypes.shape({
       _id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
     })
@@ -26,7 +26,7 @@ export class Game extends PureComponent {
       _id,
       title,
       summary,
-      author,
+      owner,
 
     } = this.props
 
@@ -42,7 +42,7 @@ export class Game extends PureComponent {
           </h1>
         </header>
         <main>
-      
+
         </main>
         <footer>
           <p Footer />

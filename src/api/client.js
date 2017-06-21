@@ -7,7 +7,7 @@ import auth from 'feathers-authentication-client'
 import io from 'socket.io-client/dist/socket.io'
 
 const host = 'http://localhost:3030'
-export const FEATHERS_TOKEN_KEY = 'mancalathegame'
+export const FEATHERS_TOKEN_KEY = 'mancalaTheGame'
 
 const socket = io(host, {
   transports: ['websocket']
