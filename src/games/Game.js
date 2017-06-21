@@ -4,6 +4,9 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import './Game.css'
+import drawStones from '../actions/games/draw-stones'
+
+
 
 class Game extends PureComponent {
     render() {

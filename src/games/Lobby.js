@@ -33,8 +33,8 @@ class Lobby extends PureComponent {
         </header>
 
         <main>
-        <CreateGameButton />
-          { this.props.games.map(this.renderGame.bind(this)) }
+        <Game />
+          // { this.props.games.map(this.renderGame.bind(this)) }
         </main>
       </div>
     )
