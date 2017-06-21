@@ -8,15 +8,20 @@ class Pit extends PureComponent {
     belongsToOwner: PropTypes.bool,
   }
 
-  state = { value: 4, belongsToOwner: true }
+  state = { value: 4, belongsToOwner: undefined }
 
   componentDidMount() {
     const {value, belongsToOwner } = this.props
     this.setState({ value, belongsToOwner})
   }
 
+  componentWillReceiveProps(nextProps) {
+
+  }
+
   render() {
-    const { value, belongsToOwner } = this.props
+    const { value } = this.props
+    const { belongsToOwner } = this.state
 
     return (
       <div className="pit">
@@ -26,4 +31,4 @@ class Pit extends PureComponent {
   }
 }
 
-export default Card
+export default Pit

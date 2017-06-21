@@ -1,4 +1,4 @@
-// src/actions/games/create.js
+// src/actions/games/join.js
 
 import API from '../../api'
 import {
@@ -8,9 +8,11 @@ import {
   LOAD_SUCCESS
 } from '../loading'
 
+export const JOINED_GAME = 'JOINED_GAME'
+
 const api = new API()
 
-export default () => {
+export default (gameId) => {
   return (dispatch) => {
     dispatch({ type: APP_LOADING })
 
@@ -18,10 +20,15 @@ export default () => {
 
     api.app.authenticate()
       .then(() => {
-        backend.create({})
-          .then(() => {
+        backend.patch(gameId, { join: true })
+          .then((result) => {
             dispatch({ type: APP_DONE_LOADING })
             dispatch({ type: LOAD_SUCCESS })
+
+            dispatch({
+              type: JOINED_GAME,
+              payload: result
+            })
           })
           .catch((error) => {
             dispatch({ type: APP_DONE_LOADING })

@@ -20,7 +20,15 @@ export default () => {
 
     api.app.authenticate()
       .then(() => {
-        backend.find()
+        backend.find({
+          query: {
+            draw: false,
+            winnerId: null,
+            $sort: {
+              createdAt: -1,
+            },
+          }
+        })
           .then((result) => {
             dispatch({ type: APP_DONE_LOADING })
             dispatch({ type: LOAD_SUCCESS })
@@ -39,11 +47,23 @@ export default () => {
           })
       })
       .catch((error) => {
-        dispatch({ type: APP_DONE_LOADING })
-        dispatch({
-          type: LOAD_ERROR,
-          payload: error.message
-        })
+        backend.find()
+          .then((result) => {
+            dispatch({ type: APP_DONE_LOADING })
+            dispatch({ type: LOAD_SUCCESS })
+
+            dispatch({
+              type: FETCHED_GAMES,
+              payload: result.data
+            })
+          })
+          .catch((error) => {
+            dispatch({ type: APP_DONE_LOADING })
+            dispatch({
+              type: LOAD_ERROR,
+              payload: error.message
+            })
+          })
       })
 
   }

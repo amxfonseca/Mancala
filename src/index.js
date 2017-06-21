@@ -24,14 +24,14 @@ ReactDOM.render(
     <Router history={history}>
       <Route path="/" component={App}>
         <IndexRoute component={Lobby} />
+        <Route path="/games/:gameId" component={Game} />
         <Route path="/sign-in" component={SignIn} />
         <Route path="/sign-up" component={SignUp} />
-        <Route path="/sign-up" component={SignUp} />
-        <Route path="/game" component={Game} />
       </Route>
     </Router>
   </Provider>,
   document.getElementById('root')
-)
+);
+
 
 registerServiceWorker();
