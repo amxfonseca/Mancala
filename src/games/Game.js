@@ -1,13 +1,13 @@
 import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
+import JoinGameDialog from './JoinGameDialog'
 import { connect } from 'react-redux'
-import { Link } from 'react-router'
+import getCurrentGame from '../actions/games/get'
+import fetchGames from '../actions/games/fetch'
+import subscribeToGames from '../actions/games/subscribe'
 import './Game.css'
 import drawStones from '../actions/games/draw-stones'
 import Pit from './Pit'
-import fetchGames from '../actions/games/fetch'
-import subscribeToGames from '../actions/games/subscribe'
-import getCurrentGame from '../actions/games/get'
+import ScorePit from './ScorePit'
 
 
 class Game extends PureComponent {
@@ -39,20 +39,59 @@ class Game extends PureComponent {
 
 
   render() {
-    const game = this.props
+    const { game, score } = this.props
 
     return (
+
+
+
       <div className="board-wrapper">
-        <div className="board">
 
-        <Pit />
 
-        {game.pits.map(this.renderPit.bind(this))}
+        <div className="board-left">
+        <ScorePit />
+        </div>
+        <div className="board-players">
+          <div className="board-upper">
+
+            <Pit />
+            <Pit />
+            <Pit />
+            <Pit />
+            <Pit />
+            <Pit />
+            </div>
+          <div className="board-downer">
+          <Pit />
+          <Pit />
+          <Pit />
+            <Pit />
+            <Pit />
+            <Pit />
+          </div>
+        </div>
+        <div className="board-right">
+
+          <ScorePit />
         </div>
       </div>
     )
   }
 }
 
+const mapStateToProps = ({ currentUser, currentGame, games, subscriptions }) => {
+  const game = games.filter((g) => (g._id === currentGame))[0]
+  const currentPlayer = game && game.players.filter((p) => (p.userId === currentUser._id))[0]
 
-export default Game
+  return {
+    game,
+    subscribed: subscriptions.includes('games'),
+  }
+}
+
+export default connect(mapStateToProps, {
+  getCurrentGame,
+  fetchGames,
+  subscribeToGames,
+  drawStones,
+})(Game)
