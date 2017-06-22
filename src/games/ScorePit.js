@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import './Pit.css'
+import './ScorePit.css'
 
-class Pit extends PureComponent {
+class ScorePit extends PureComponent {
   static propTypes = {
     value: PropTypes.number.isRequired,
     belongsToOwner: PropTypes.bool,
@@ -25,12 +25,12 @@ class Pit extends PureComponent {
 
     return (
 
-      <div className="pit">
+      <div className="score-pit">
           {this.props.value}
       </div>
-
+  
     )
   }
 }
 
-export default Pit
+export default ScorePit
