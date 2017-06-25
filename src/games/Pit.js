@@ -5,30 +5,22 @@ import './Pit.css'
 class Pit extends PureComponent {
   static propTypes = {
     value: PropTypes.number.isRequired,
-    belongsToOwner: PropTypes.bool,
   }
 
-  state = { value: 4, belongsToOwner: undefined }
 
-  componentDidMount() {
-    const {value, belongsToOwner } = this.props
-    this.setState({ value, belongsToOwner})
-  }
+  componentWillMount() {}
 
-  componentWillReceiveProps(nextProps) {
-
-  }
+  componentWillReceiveProps(nextProps) {}
 
   render() {
+
     const { value } = this.props
-    const { belongsToOwner } = this.state
+    console.log(value)
 
     return (
-
       <div className="pit">
-          {this.props.value}
+          <p>{value}</p>
       </div>
-
     )
   }
 }

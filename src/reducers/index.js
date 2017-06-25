@@ -6,6 +6,7 @@ import currentUser from './currentUser'
 import currentGame from './currentGame'
 import subscriptions from './subscriptions'
 
+
 export default {
   games,
   loading,

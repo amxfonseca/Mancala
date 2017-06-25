@@ -5,15 +5,11 @@ import './ScorePit.css'
 class ScorePit extends PureComponent {
   static propTypes = {
     value: PropTypes.number.isRequired,
-    belongsToOwner: PropTypes.bool,
   }
 
-  state = { value: 4, belongsToOwner: undefined }
+  state = {}
 
-  componentDidMount() {
-    const {value, belongsToOwner } = this.props
-    this.setState({ value, belongsToOwner})
-  }
+  componentDidMount() {}
 
   componentWillReceiveProps(nextProps) {
 
@@ -21,14 +17,14 @@ class ScorePit extends PureComponent {
 
   render() {
     const { value } = this.props
-    const { belongsToOwner } = this.state
+
 
     return (
 
       <div className="score-pit">
-          {this.props.value}
+          {"score"}
       </div>
-  
+
     )
   }
 }

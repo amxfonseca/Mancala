@@ -1,11 +1,9 @@
 import React, { PureComponent } from 'react'
-import JoinGameDialog from './JoinGameDialog'
 import { connect } from 'react-redux'
 import getCurrentGame from '../actions/games/get'
 import fetchGames from '../actions/games/fetch'
 import subscribeToGames from '../actions/games/subscribe'
 import './Game.css'
-import drawStones from '../actions/games/draw-stones'
 import Pit from './Pit'
 import ScorePit from './ScorePit'
 
@@ -21,57 +19,40 @@ class Game extends PureComponent {
     if (!subscribed) subscribeToGames()
   }
 
-  drawStones(pitIndex) {
-    const { game } = this.props
-
-    return () => {
-      this.props.drawStones(game._id, pitIndex)
-    }
-  }
-
-  renderPit(pit, index) {
-
-    return <Pit
-      key={index} { ...pit }
-      index={index}
-      onDraw={this.drawStones(index).bind(this)} />
-  }
+  renderPit(pit, index) { return <Pit key={index} { ...pit } /> }
 
 
   render() {
-    const { game, score } = this.props
+    const { game }  = this.props
+
+    console.log("hij rendert!")
+
+    console.log(game)
+
+    if (!game) return null
+
+
+    const pits = game.pits
+
+    console.log(game.pits)
 
     return (
 
-
-
       <div className="board-wrapper">
-
-
         <div className="board-left">
-        <ScorePit />
+          <ScorePit />
         </div>
         <div className="board-players">
           <div className="board-upper">
 
-            <Pit />
-            <Pit />
-            <Pit />
-            <Pit />
-            <Pit />
-            <Pit />
-            </div>
+            {game.pits.map(this.renderPit.bind(this))}
+
+          </div>
           <div className="board-downer">
-          <Pit />
-          <Pit />
-          <Pit />
-            <Pit />
-            <Pit />
-            <Pit />
+            {game.pits.map(this.renderPit.bind(this))}
           </div>
         </div>
         <div className="board-right">
-
           <ScorePit />
         </div>
       </div>
@@ -79,13 +60,12 @@ class Game extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ currentUser, currentGame, games, subscriptions }) => {
+const mapStateToProps = ({ currentUser, currentGame, games }) => {
   const game = games.filter((g) => (g._id === currentGame))[0]
   const currentPlayer = game && game.players.filter((p) => (p.userId === currentUser._id))[0]
 
   return {
-    game,
-    subscribed: subscriptions.includes('games'),
+    game
   }
 }
 
@@ -93,5 +73,4 @@ export default connect(mapStateToProps, {
   getCurrentGame,
   fetchGames,
   subscribeToGames,
-  drawStones,
 })(Game)
