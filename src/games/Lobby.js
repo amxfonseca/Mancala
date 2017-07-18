@@ -8,9 +8,6 @@ import Paper from 'material-ui/Paper';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import WatchGameIcon from 'material-ui/svg-icons/image/remove-red-eye';
-import JoinGameIcon from 'material-ui/svg-icons/social/person-add';
-import PlayGameIcon from 'material-ui/svg-icons/hardware/videogame-asset';
-import WaitingIcon from 'material-ui/svg-icons/image/timelapse';
 import './Lobby.css'
 
 class Lobby extends PureComponent {
@@ -28,26 +25,15 @@ class Lobby extends PureComponent {
     }
   }
 
-  isJoinable(game) {
-    if (game.started) return false
-    return !!!this.isPlayer(game)
-  }
 
-  isPlayer(game) {
-    return game.players
-      .map((p) => (p.userId))
-      .includes(this.props.currentUser._id)
-  }
 
   renderGame(game, index) {
-    let ActionIcon = this.isJoinable(game) ? JoinGameIcon : WatchGameIcon
-    if (this.isPlayer(game)) ActionIcon = game.isPlayable ? PlayGameIcon : WaitingIcon
 
     return (
       <MenuItem
         key={index}
         onClick={this.goToGame(game._id).bind(this)}
-        rightIcon={<ActionIcon />}
+        rightIcon={<WatchGameIcon />}
         primaryText={`${game.owner.name}'s Game`} />
     )
   }
@@ -66,6 +52,7 @@ class Lobby extends PureComponent {
     )
   }
 }
+
 
 const mapStateToProps = ({ games, currentUser, subscriptions }) => (
   {

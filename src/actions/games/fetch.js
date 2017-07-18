@@ -20,15 +20,7 @@ export default () => {
 
     api.app.authenticate()
       .then(() => {
-        backend.find({
-          query: {
-            draw: false,
-            winnerId: null,
-            $sort: {
-              createdAt: -1,
-            },
-          }
-        })
+        backend.find()
           .then((result) => {
             dispatch({ type: APP_DONE_LOADING })
             dispatch({ type: LOAD_SUCCESS })

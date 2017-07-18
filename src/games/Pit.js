@@ -1,34 +1,28 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import './Pit.css'
 
 class Pit extends PureComponent {
   static propTypes = {
-    value: PropTypes.number.isRequired,
-    belongsToOwner: PropTypes.bool,
+    value: PropTypes.number,
   }
 
-  state = { value: 4, belongsToOwner: undefined }
 
-  componentDidMount() {
-    const {value, belongsToOwner } = this.props
-    this.setState({ value, belongsToOwner})
-  }
+  componentWillMount() {}
 
-  componentWillReceiveProps(nextProps) {
-
-  }
+  componentWillReceiveProps(nextProps) {}
 
   render() {
-    const { value } = this.props
-    const { belongsToOwner } = this.state
+
+    const {value}  = this.props
+
+    console.log("value", this.props)
 
     return (
-
       <div className="pit">
-          {this.props.value}
+          <p>{value}</p>
       </div>
-
     )
   }
 }
