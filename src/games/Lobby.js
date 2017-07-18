@@ -52,7 +52,7 @@ class Lobby extends PureComponent {
     )
   }
 }
-console.log('hello!')
+
 
 const mapStateToProps = ({ games, currentUser, subscriptions }) => (
   {

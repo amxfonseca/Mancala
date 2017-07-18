@@ -4,7 +4,7 @@ import './ScorePit.css'
 
 class ScorePit extends PureComponent {
   static propTypes = {
-    value: PropTypes.number.isRequired,
+    value: PropTypes.number,
   }
 
   state = {}

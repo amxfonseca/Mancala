@@ -19,22 +19,21 @@ class Game extends PureComponent {
     if (!subscribed) subscribeToGames()
   }
 
-  renderPit(pit, index) { return <Pit key={index} { ...pit } /> }
+  renderPit(pit, index) {
+    return <Pit key={index} { ...pit } />
+  }
 
 
   render() {
     const { game }  = this.props
 
-    console.log("hij rendert!")
-
-    console.log(game)
+    console.log("game:", game)
 
     if (!game) return null
 
-
     const pits = game.pits
 
-    console.log(game.pits)
+    console.log("pits:", game.pits)
 
     return (
 
@@ -44,9 +43,8 @@ class Game extends PureComponent {
         </div>
         <div className="board-players">
           <div className="board-upper">
-
+          <Pit />
             {game.pits.map(this.renderPit.bind(this))}
-
           </div>
           <div className="board-downer">
             {game.pits.map(this.renderPit.bind(this))}
