@@ -9,18 +9,15 @@ class Pit extends PureComponent {
   }
 
 
-  componentWillMount() {
-    const value = this.props
-    this.setState({value})
-  }
+  componentWillMount() {}
 
   componentWillReceiveProps(nextProps) {}
 
   render() {
 
-    const value  = this.state
+    const {value}  = this.props
 
-    console.log("value", this.state)
+    console.log("value", this.props)
 
     return (
       <div className="pit">
