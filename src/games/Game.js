@@ -5,7 +5,6 @@ import fetchGames from '../actions/games/fetch'
 import subscribeToGames from '../actions/games/subscribe'
 import './Game.css'
 import Pit from './Pit'
-import ScorePit from './ScorePit'
 
 
 class Game extends PureComponent {
@@ -23,35 +22,49 @@ class Game extends PureComponent {
     return <Pit key={index} { ...pit } />
   }
 
+  renderScore(ScorePit, index) {
+    return <ScorePit key={index} { ...ScorePit } />
+  }
 
   render() {
-    const { game }  = this.props
 
+    const { game }  = this.props
     console.log("game:", game)
 
     if (!game) return null
 
-    const pits = game.pits
 
-    console.log("pits:", game.pits)
+    const sidePlayer1 = game.pits.filter((pit) => pit.belongsToOwner === true)
+    const sidePlayer2 = game.pits.filter((pit) => pit.belongsToOwner === false)
+
+    const scorePlayer1 = game.players[0].score
+    const scorePlayer2 = game.players.length === 1 ? 666 : game.players[1].score
+
+    console.log("scorePlayer1", scorePlayer1)
+    console.log("scorePlayer2", scorePlayer2)
+
+    console.log("myside", sidePlayer1)
+    console.log("yrside", sidePlayer2)
 
     return (
-
       <div className="board-wrapper">
         <div className="board-left">
-          <ScorePit />
+          <div className="score-pit">
+            <p>{scorePlayer2}</p>
+          </div>
         </div>
         <div className="board-players">
           <div className="board-upper">
-          <Pit />
-            {game.pits.map(this.renderPit.bind(this))}
+            {sidePlayer2.map(this.renderPit.bind(this))}
           </div>
           <div className="board-downer">
-            {game.pits.map(this.renderPit.bind(this))}
+            {sidePlayer1.map(this.renderPit.bind(this))}
           </div>
         </div>
         <div className="board-right">
-          <ScorePit />
+          <div className="score-pit">
+            <p>{scorePlayer1}</p>
+          </div>
         </div>
       </div>
     )
