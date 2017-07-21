@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import getCurrentGame from '../actions/games/get'
 import fetchGames from '../actions/games/fetch'
 import subscribeToGames from '../actions/games/subscribe'
+import drawStones from '../actions/games/draw-stones'
 import './Game.css'
 import Pit from './Pit'
 
@@ -19,11 +20,9 @@ class Game extends PureComponent {
   }
 
   renderPit(pit, index) {
-    return <Pit key={index} { ...pit } />
-  }
-
-  renderScore(ScorePit, index) {
-    return <ScorePit key={index} { ...ScorePit } />
+    return <Pit
+    key={index} { ...pit }
+    index={index} />
   }
 
   render() {
@@ -33,15 +32,11 @@ class Game extends PureComponent {
 
     if (!game) return null
 
-
-    const sidePlayer1 = game.pits.filter((pit) => pit.belongsToOwner === true)
-    const sidePlayer2 = game.pits.filter((pit) => pit.belongsToOwner === false)
+    const sidePlayer1 = game.pits.slice(0, 6)
+    const sidePlayer2 = game.pits.slice(6, 12)
 
     const scorePlayer1 = game.players[0].score
-    const scorePlayer2 = game.players.length === 1 ? 666 : game.players[1].score
-
-    console.log("scorePlayer1", scorePlayer1)
-    console.log("scorePlayer2", scorePlayer2)
+    const scorePlayer2 = game.players.length === 1 ? 0 : game.players[1].score
 
     console.log("myside", sidePlayer1)
     console.log("yrside", sidePlayer2)
@@ -84,4 +79,5 @@ export default connect(mapStateToProps, {
   getCurrentGame,
   fetchGames,
   subscribeToGames,
+  drawStones,
 })(Game)
