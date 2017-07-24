@@ -15,8 +15,9 @@ class Pit extends PureComponent {
   componentWillReceiveProps(nextProps) {}
 
   draw() {
-    const { onDraw, belongsToOwner } = this.props
-    return onDraw()
+    const { onDraw, currentGame, index, belongsToOwner } = this.props
+    const pit = { index, belongsToOwner }
+    this.props.drawStones(currentGame, pit)
   }
 
   render() {
