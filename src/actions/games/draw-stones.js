@@ -8,12 +8,12 @@ import {
 const api = new API()
 export const DRAWN_STONES = 'DRAWN_STONES'
 
-export default (gameId, pit) => {
+export default (game, pit) => {
   return (dispatch) => {
     const backend = api.service('games')
     api.app.authenticate()
       .then(() => {
-        backend.patch(gameId, { draw: pit })
+        backend.patch(game, { draw: pit })
         .then(() => {
           dispatch({
             type: DRAWN_STONES,

@@ -12,7 +12,7 @@ import './Lobby.css'
 
 class Lobby extends PureComponent {
   componentWillMount() {
-    const { subscribed, fetchGames, subscribeToGames } = this.props
+    const { subscribed, fetchGames, subscribeToGames, currentUser } = this.props
     fetchGames()
     if (!subscribed) subscribeToGames()
   }
