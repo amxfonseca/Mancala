@@ -19,10 +19,19 @@ class Game extends PureComponent {
     if (!subscribed) subscribeToGames()
   }
 
+  drawStones(pit) {
+    const { game }  = this.props
+
+    return () => {
+      this.props.drawStones(game, pit)
+    }
+  }
+
   renderPit(pit, index) {
     return <Pit
     key={index} { ...pit }
-    index={index} />
+    index={index}
+    onDraw={this.drawStones(index).bind(this)}/>
   }
 
   render() {
