@@ -35,18 +35,10 @@ class Game extends PureComponent {
     onDraw={this.drawStones(index).bind(this)}/>
   }
 
-  winner() {
-    const {game, winnerId} = this.props
-    if (!winnerId) return null
-    console.log("winning")
-    let winner = (winnerId === game.players[0]._id) ? "Player 1 wins!" : "Player 2 wins!"
-    return winner
-  }
 
   render() {
 
     const { game, hasTurn, currentUser }  = this.props
-    console.log("game:", game, "hasTurn", hasTurn)
 
     if (!game) return null
 
@@ -58,18 +50,13 @@ class Game extends PureComponent {
 
     let winner = game.winnerId
       if (winner && winner === game.players[0]._id) winner = game.players[0].name
-      // if (winner && winner === game.players[1]._id) winner = game.players[1].name
-      console.log("winner", winner)
-
-    // const otherPlayer = game.players.filter((p) => (p.userId !== currentUser._id))[0]
-    // console.log(otherPlayer)
+      if ((winner && game.players[1]) && winner === game.players[1]._id) winner = game.players[1].name
 
 
     return (
       <div className="mancala">
         <p className="turn">
-        {winner !== undefined ? `${winner} wins!` :
-          `It is ${ hasTurn ? 'YOUR' : 'THEIR' } turn!`}
+        {winner === undefined ? `It is ${ hasTurn ? 'YOUR' : 'THEIR' } turn!` : `${winner} wins!`}
         </p>
         <div className="board-wrapper">
           <div className="board-left">
